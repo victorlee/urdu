@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Urdu typer</title>
+<meta charset="utf-8">
+
+    <script type="text/javascript">
+	  
+var conversion = {
+"`":"\u200C",
+"-":"ـ",
+"a":"ا",
+"b":"ب",
+"p":"پ",
+"t":"ت",
+"tT":"ٹ",
+"th":"ث",
+"j":"ج",
+"c":"چ",
+"H":"ح",
+"x":"خ",
+"d":"د",
+"dT":"ڈ",
+"z":"ذ",
+"r":"ر",
+"rT":"ڑ",
+"z":"ز",
+"zh":"ژ",
+"s":"س",
+"sh":"ش",
+"S":"ص",
+"D":"ض",
+"T":"ط",
+"Z":"ظ",
+"G":"ع",
+"gh":"غ",
+"f":"ف",
+"q":"ق",
+"k":"ک",
+"g":"گ",
+"l":"ل",
+"m":"م",
+"n":"ن",
+"N":"ں",
+"~":"\u0658",
+"w":"و",
+"u":"و",
+"o":"و",
+"h":"ہ",
+"'":"ھ",
+"y":"ی",
+"i":"ی",
+"e":"ے",
+"\u002F":"ئ",
+"\u002F\u002F":"ء",
+"aa":"آ",
+"A":"\u064E",
+"I":"\u0650",
+"U":"\u064F",
+",":"،",
+";":"؛",
+"?":"؟",
+".":"۔",
+"0":"۰",
+"1":"۱",
+"2":"۲",
+"3":"۳",
+"4":"۴",
+"5":"۵",
+"6":"۶",
+"7":"۷",
+"8":"۸",
+"9":"۹",
+
+"t`h":"\u062A\u0647",
+"d`h":"\u062F\u0647",
+"z`h":"\u0632\u0647",
+"s`h":"\u0633\u0647",
+"g`h":"\u06AF\u0647",
+"t`T":"تط",
+"d`T":"دط",
+"r`T":"رط",
+
+        };
+
+ var maxLength = Object.keys(conversion)
+    .reduce((a, b) => a.length > b.length ? a : b) // get the longest word
+    .length; // and it's length
+  
+  function convert (text) {
+    var converted = "";
+    var cur = 0;
+    while (cur < text.length) {
+      var testedPhoneme;
+      var symbol = undefined;
+      for (var length = maxLength; length > 0; length --) {
+        testedPhoneme = text.substr(cur, length);
+        if (conversion[testedPhoneme]) {
+          symbol = conversion[testedPhoneme];
+          break; // stop the loop
+        }
+      }
+      if (symbol) {
+        converted += symbol;
+        cur += testedPhoneme.length;
+      }
+      else {
+        converted += text[cur]
+        cur++;
+      }
+    }
+    return converted
+  }
+
+  function onInputTextChange(txt) {
+    var outputTextareaElem = document.getElementById("output_textarea");
+    var div = document.createElement("div");
+    var outputHtmlEntities = convert(txt);
+    div.innerHTML = outputHtmlEntities;
+    outputTextareaElem.value = div.innerText;
+  }
+
+
+        function select() {
+          const input = document.getElementById('input_textarea');
+          input.focus();
+          input.select();
+        }   
+        function copytext() {
+          var copyText = document.getElementById("output_textarea");
+          copyText.select();
+          copyText.setSelectionRange(0, 99999)
+          document.execCommand("copy");
+        }
+
+    </script>
+    
+<style>
+@import url(https://victorlee.github.io/fonts/stylesheet.css);
+html {
+font-family:arial
+}
+table {
+  border-collapse: collapse;
+  width: 90%;
+}
+td, th {
+  border: 1px solid #AAA;
+  text-align: center;
+  padding: 1px;
+}
+.note {
+  border: 1px solid #DDD;
+  width: 30%;
+  text-align: left;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.box {
+  font-size: 1.8rem;
+  display: inline-block;
+  line-height: 1.2;
+  width: 55px;
+  border: 1px solid #888;
+  min-height: 30px;
+  padding: 3px;
+  background-color: #eee;
+  border-radius: 5px;
+  font-family: SegoeUI;
+}
+</style>
+
+
+</head>
+<body>  
+
+<body>  
+
+<center><h1 class="text-center">Urdu typer</h1>
+ 
+<center>
+<table>
+<thead>
+<tr>
+<th>	
+<button onclick="copytext()">Copy text</button>
+</th>
+<th>
+<button onclick="select('input_textarea')">Select all</button>
+<button onclick="document.getElementById('input_textarea').value = ''">Clear</button>
+</th>
+<th style="width: 200px">Conversion table</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<textarea lang="ur" style="line-height:1.5;width:95%;font-family:Mehr Nastaleeq;font-size:2rem; padding:6px" rows="5" dir="rtl" placeholder="output" id="output_textarea"></textarea>  
+</td>
+<td>
+<textarea
+id="input_textarea"
+autofocus=""
+placeholder="Input text here"
+rows="10"
+oninput="onInputTextChange(this.value)"
+style="font-size:1.2rem;font-family:Arial;width:96%;"></textarea>
+  
+</td>
+<td>
+
+<center>
+<div style="overflow-y: scroll; height:250px; width:170px;font-family:SegoeUI;font-size:1.3rem">
+
+
+
+<table lang="ur">
+<thead>
+<tr>
+<th>in.</th>
+<th>out.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>`</td>
+<td>\u200C</td>
+</tr>
+<tr>
+<td>-</td>
+<td>ـ</td>
+</tr>
+<tr>
+<td>a</td>
+<td>ا</td>
+</tr>
+<tr>
+<td>b</td>
+<td>ب</td>
+</tr>
+<tr>
+<td>p</td>
+<td>پ</td>
+</tr>
+<tr>
+<td>t</td>
+<td>ت</td>
+</tr>
+<tr>
+<td>tT</td>
+<td>ٹ</td>
+</tr>
+<tr>
+<td>th</td>
+<td>ث</td>
+</tr>
+<tr>
+<td>j</td>
+<td>ج</td>
+</tr>
+<tr>
+<td>c</td>
+<td>چ</td>
+</tr>
+<tr>
+<td>H</td>
+<td>ح</td>
+</tr>
+<tr>
+<td>x</td>
+<td>خ</td>
+</tr>
+<tr>
+<td>d</td>
+<td>د</td>
+</tr>
+<tr>
+<td>dT</td>
+<td>ڈ</td>
+</tr>
+<tr>
+<td>z</td>
+<td>ذ</td>
+</tr>
+<tr>
+<td>r</td>
+<td>ر</td>
+</tr>
+<tr>
+<td>rT</td>
+<td>ڑ</td>
+</tr>
+<tr>
+<td>z</td>
+<td>ز</td>
+</tr>
+<tr>
+<td>zh</td>
+<td>ژ</td>
+</tr>
+<tr>
+<td>s</td>
+<td>س</td>
+</tr>
+<tr>
+<td>sh</td>
+<td>ش</td>
+</tr>
+<tr>
+<td>S</td>
+<td>ص</td>
+</tr>
+<tr>
+<td>D</td>
+<td>ض</td>
+</tr>
+<tr>
+<td>T</td>
+<td>ط</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>ظ</td>
+</tr>
+<tr>
+<td>G</td>
+<td>ع</td>
+</tr>
+<tr>
+<td>gh</td>
+<td>غ</td>
+</tr>
+<tr>
+<td>f</td>
+<td>ف</td>
+</tr>
+<tr>
+<td>q</td>
+<td>ق</td>
+</tr>
+<tr>
+<td>k</td>
+<td>ک</td>
+</tr>
+<tr>
+<td>g</td>
+<td>گ</td>
+</tr>
+<tr>
+<td>l</td>
+<td>ل</td>
+</tr>
+<tr>
+<td>m</td>
+<td>م</td>
+</tr>
+<tr>
+<td>n</td>
+<td>ن</td>
+</tr>
+<tr>
+<td>N</td>
+<td>ں</td>
+</tr>
+<tr>
+<td>~</td>
+<td>٘</td>
+</tr>
+<tr>
+<td>w, u, o</td>
+<td>و</td>
+</tr>
+<tr>
+<td>h</td>
+<td>ہ</td>
+</tr>
+<tr>
+<td>&#39;</td>
+<td>ھ</td>
+</tr>
+<tr>
+<td>y, i</td>
+<td>ی</td>
+</tr>
+<tr>
+<td>e</td>
+<td>ے</td>
+</tr>
+<tr>
+<td>/</td>
+<td>ئ</td>
+</tr>
+<tr>
+<td>//</td>
+<td>ء</td>
+</tr>
+<tr>
+<td>aa</td>
+<td>آ</td>
+</tr>
+<tr>
+<td>A</td>
+<td>َ</td>
+</tr>
+<tr>
+<td>I</td>
+<td>ِ</td>
+</tr>
+<tr>
+<td>U</td>
+<td>ُ</td>
+</tr>
+<tr>
+<td>,</td>
+<td>،</td>
+</tr>
+<tr>
+<td>;</td>
+<td>؛</td>
+</tr>
+<tr>
+<td>?</td>
+<td>؟</td>
+</tr>
+<tr>
+<td>.</td>
+<td>۔</td>
+</tr>
+<tr>
+<td>0</td>
+<td>۰</td>
+</tr>
+<tr>
+<td>1</td>
+<td>۱</td>
+</tr>
+<tr>
+<td>2</td>
+<td>۲</td>
+</tr>
+<tr>
+<td>3</td>
+<td>۳</td>
+</tr>
+<tr>
+<td>4</td>
+<td>۴</td>
+</tr>
+<tr>
+<td>5</td>
+<td>۵</td>
+</tr>
+<tr>
+<td>6</td>
+<td>۶</td>
+</tr>
+<tr>
+<td>7</td>
+<td>۷</td>
+</tr>
+<tr>
+<td>8</td>
+<td>۸</td>
+</tr>
+<tr>
+<td>9</td>
+<td>۹</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+</div>
+</center>
+
+</td>
+</tr>
+</tbody>
+</table>
+</center>
+</body>
+</html>
