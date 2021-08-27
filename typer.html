@@ -481,6 +481,22 @@ style="font-size:1.2rem;font-family:Arial;width:96%;"></textarea>
 </tr>
 </tbody>
 </table>
+	<div>SegoeUI <input type="checkbox" id="fontChange" onclick="fontChange()"></div>
+<script>	
+function fontChange() {
+  var checkBox = document.getElementById("fontChange");
+  var text = document.getElementById("text");
+  if (checkBox.checked == true){
+document.getElementById("output_textarea").style.fontFamily = 'SegoeUI';
+document.getElementById("output_textarea").style.fontSize = '1.4rem';
+document.getElementById("output_textarea").rows = 7;
+  } else {
+document.getElementById("output_textarea").style.fontFamily = 'Mehr Nastaleeq';
+document.getElementById("output_textarea").style.fontSize = '2rem';
+document.getElementById("output_textarea").rows = 5;
+  }
+}
+</script>
 </center>
 </body>
 </html>
